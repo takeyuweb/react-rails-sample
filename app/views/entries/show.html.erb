@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+    <strong>Categories:</strong>
+    <% @entry.placements.each do |placement| %>
+        <span class="<% if placement.primary %>primary<% end %>">[<%= placement.category.label %>]</span>
+    <% end %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @entry.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @entry.body %>
+</p>
+
+<%= link_to 'Edit', edit_entry_path(@entry) %> |
+<%= link_to 'Back', entries_path %>
