@@ -6,4 +6,4 @@ This is example of the simple blog.
 See branches.
 
 - using-react
-- not-using-react
+- non-using-react
