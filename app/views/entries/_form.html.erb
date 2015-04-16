@@ -16,7 +16,7 @@
                                 initialState: get_state(@entry),
                                 categories: Category.all.map { |c| get_state(c) }
                         },
-                        static: true %>
+                        prerender: true %>
 
     <div class="actions">
         <%= f.submit %>

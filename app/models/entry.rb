@@ -13,7 +13,7 @@ class Entry < ActiveRecord::Base
     if primary_placements.empty? && placements.length > 0
       placements[0].primary = true
     else
-      primary_placements.slice(1, primary_placements.length).each do |placement|
+      (primary_placements.slice(1, primary_placements.length) || []).each do |placement|
         placement.primary = false
       end
     end

@@ -6,7 +6,7 @@ module ApplicationHelper
   def get_entry_state(entry)
     format_state(
         id: entry.id,
-        url: entry_url(entry),
+        url: entry.new_record? ? nil : entry_url(entry),
         title: entry.title,
         body: entry.body,
         placements: entry.placements.map { |placement| get_placement_state(placement) },
@@ -19,14 +19,15 @@ module ApplicationHelper
     format_state(
         id: placement.id,
         category: get_category_state(placement.category),
-        primary: placement.primary)
+        primary: placement.primary,
+        destroy: placement.marked_for_destruction?)
   end
 
   def get_category_state(category)
     format_state(
         id: category.id,
         label: category.label,
-        url: category_url(category)
+        url: category.new_record? ? nil : category_url(category)
     )
   end
 

@@ -6,37 +6,10 @@ var EntryForm = React.createClass({
     componentWillMount: function () {
         if (this.props.initialState) {
             this.setState(this.props.initialState);
-            console.log(this.props.initialState);
         }
     },
 
-    handleCategoryChanged: function (categoryId, params) {
-        var placement;
-        var placements = this.state.placements;
-        placements.forEach(function (p) {
-            if (p.category.id === categoryId) {
-                placement = p;
-            }
-        });
-
-        if (placement) {
-            if (placement.id) {
-                placement._destroy = !params.value;
-            }
-        } else {
-            if (params.value) {
-                placement = {
-                    category: {
-                        id: categoryId
-                    }
-                };
-                placements.push(placement);
-            }
-        }
-        this.setState({placements: placements});
-    },
-
-    renderCategorySelection: function () {
+    renderEntryCategoriesCheckboxes: function () {
         return this.props.categories.map(function (category, i) {
             var placement = null;
             this.state.placements.forEach(function (p) {
@@ -45,16 +18,10 @@ var EntryForm = React.createClass({
                 }
             });
 
-            var form = this;
-            var onChangeClosure = function (params) {
-                form.handleCategoryChanged(category.id, params);
-            };
-
-            return <EntryCategoryInput
+            return <EntryCategoriesCheckbox
                 key={'categories-'+category.id}
                 category={category}
-                placement={placement}
-                onChange={onChangeClosure}/>
+                placement={placement}/>
         }.bind(this));
     },
 
@@ -62,7 +29,7 @@ var EntryForm = React.createClass({
         return (
             <div>
                 <div className="field">
-                   {this.renderCategorySelection()}
+                   {this.renderEntryCategoriesCheckboxes()}
                 </div>
                 <div className="field">
                     <label htmlFor="entry_title">Title</label><br />

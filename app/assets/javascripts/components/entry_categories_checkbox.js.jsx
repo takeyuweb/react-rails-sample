@@ -1,4 +1,4 @@
-var EntryCategoryInput = React.createClass({
+var EntryCategoriesCheckbox = React.createClass({
     propTypes: {
         category: React.PropTypes.object.isRequired,
         placement: React.PropTypes.object,
@@ -9,7 +9,7 @@ var EntryCategoryInput = React.createClass({
         var checked = false;
         if (this.props.placement) {
             if (this.props.placement.id) {
-                checked = !this.props.placement._destroy;
+                checked = !this.props.placement.destroy;
             } else {
                 checked = true;
             }
@@ -73,22 +73,3 @@ var EntryCategoryInput = React.createClass({
         );
     }
 });
-
-
-/*
- * <label>
- <% if placement = f.object.placements.find{|placement| placement.category_id == category.id} %>
- <% unless placement.new_record? %>
- <%= hidden_field_tag "entry[placements_attributes][#{index}][id]", placement.id %>
- <%= hidden_field_tag "entry[placements_attributes][#{index}][_destroy]",
- 'false',
- class: 'entry_placements_attributes__destroy'%>
- <% end %>
- <% end %>
- <%= check_box_tag "entry[placements_attributes][#{index}][category_id]",
- category.id,
- f.object.placements.map(&:category_id).include?(category.id),
- class: 'entry_placements_attributes_category_id' %>
- <%= category.label %>
- </label>
- * */
