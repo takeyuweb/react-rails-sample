@@ -43,4 +43,6 @@ group :development, :test do
   gem 'spring'
 end
 
-
+gem 'react-rails'
+gem 'i18n-js'
+gem 'js-routes'

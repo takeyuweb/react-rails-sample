@@ -1,1 +1,3 @@
-json.extract! @entry, :id, :title, :body, :created_at, :updated_at
+get_entry_state(@entry).each do |k, v|
+  json.set! k, v
+end

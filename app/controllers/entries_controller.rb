@@ -45,6 +45,12 @@ class EntriesController < ApplicationController
         format.html { redirect_to @entry, notice: 'Entry was successfully updated.' }
         format.json { render :show, status: :ok, location: @entry }
       else
+        entry_params[:placements_attributes].each do |k, v|
+          if v[:id].present? && (v[:_destroy] == 'true' || v[:destroy].to_i == 1)
+            @entry.placements = @entry.placements.to_a.reject{|placement| placement.id == v[:id].to_i }
+          end
+        end
+
         format.html { render :edit }
         format.json { render json: @entry.errors, status: :unprocessable_entity }
       end

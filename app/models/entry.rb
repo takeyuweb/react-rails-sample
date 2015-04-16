@@ -4,6 +4,7 @@ class Entry < ActiveRecord::Base
   has_one :category, ->{ where(primary: true) }, through: :placements
   accepts_nested_attributes_for :placements, allow_destroy: true
   before_validation :set_primary
+  validates :title, presence: true
 
   private
   def set_primary
